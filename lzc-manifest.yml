@@ -47,7 +47,7 @@ services:
       - DATABASE_PASSWORD=postgres
       - DATABASE_NAME=agam_space
       - HTTP_PORT=3331
-      - ALLOW_NEW_SIGNUP={{.U.allow_new_signup}}
+      - ALLOW_NEW_SIGNUP=true
       - DEFAULT_USER_STORAGE_QUOTA={{.U.default_user_storage_quota}}
       - CORS_ORIGIN=*
       # OIDC SSO Configuration - LazyCat v1.3.5+ unified OIDC support

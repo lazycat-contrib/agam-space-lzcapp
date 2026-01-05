@@ -1,10 +1,4 @@
 params:
-  - id: allow_new_signup
-    type: bool
-    name: "allow new signup"
-    description: "Allow new user registration.use lazycat oidc default"
-    default_value: false
-
   - id: default_user_storage_quota
     type: number
     name: "default user storage quota"
@@ -13,9 +7,6 @@ params:
 
 locales:
   zh:
-    allow_new_signup:
-      name: "允许新用户注册"
-      description: "是否允许新用户注册,默认使用懒猫OIDC登录"
     default_user_storage_quota:
       name: "默认用户存储配额"
       description: "每个用户的默认存储配额（字节）- 10GB\n存储配额示例:\n5GB: 5000000000\n10GB: 10000000000 (默认)\n50GB: 50000000000\n100GB: 100000000000"
