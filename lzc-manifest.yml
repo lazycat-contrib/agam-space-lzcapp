@@ -1,6 +1,6 @@
 name: Agam Space
 package: cloud.lazycat.app.agam-space
-version: 0.2.1
+version: 0.2.4
 min_os_version: 1.3.8
 description: "Self-hosted, zero-knowledge, end-to-end encrypted file storage"
 license: MIT
@@ -38,8 +38,8 @@ services:
       start_period: 30s
 
   agam:
-    #  agamspace/agam-space:0.2.1
-    image: registry.lazycat.cloud/czyt/agamspace/agam-space:6e1cd850b4cd5085
+    #  agamspace/agam-space:0.2.4
+    image: registry.lazycat.cloud/czyt/agamspace/agam-space:8f97305a13ae0770
     environment:
       - DATABASE_HOST=postgres
       - DATABASE_PORT=5432
