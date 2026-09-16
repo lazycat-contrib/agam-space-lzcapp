@@ -1,0 +1,52 @@
+version: 1
+
+project:
+  root: .
+  build_config: lzc-build.yml
+  package_file: package.yml
+  output: .lazycat-build/agam-space.lpk
+  target_arch: amd64
+
+update:
+  strategy: publish
+  allow_downgrade: false
+  version_source:
+    type: image
+    image: agam
+
+build:
+  run_buildscript: false
+
+images:
+  # 主应用：上游有完整三段 SemVer tag（0.2.0~0.4.0），排除 latest/dev/-hardened
+  - id: agam
+    target: service
+    service: agam
+    source: ghcr.io/agam-space/agam-space
+    channel: stable
+    sort: semver
+    tag_regex: '^v?\d+\.\d+\.\d+$'
+    delivery:
+      mode: mirror
+  # 辅助 postgres：跟随上游 dev compose 的 postgres:15-alpine 家族，tag 带后缀 → custom + 版本映射
+  - id: postgres
+    target: service
+    service: postgres
+    source: library/postgres
+    channel: custom
+    sort: semver
+    tag_regex: '^15\.\d+-alpine$'
+    version_regex: '^(?P<version>15\.\d+)-alpine$'
+    version_template: '{version}.0'
+    delivery:
+      mode: mirror
+
+stores:
+  official:
+    # Official store publication is intentionally disabled; publish only to Miaomiao Store.
+    enabled: false
+  private:
+    enabled: true
+    skip_if_version_exists: true
+    name: Agam Space
+    summary: "自托管、零知识、端到端加密的文件存储"
