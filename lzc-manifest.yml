@@ -1,14 +1,11 @@
 application:
   subdomain: agam
   oidc_redirect_path: /api/v1/auth/sso/oidc/callback
-
   public_path:
     - /
-
   upstreams:
     - location: /
       backend: http://agam:3331/
-
 services:
   postgres:
     # upstream: library/postgres:15.19-alpine
@@ -27,10 +24,9 @@ services:
       timeout: 10s
       retries: 3
       start_period: 30s
-
   agam:
-    # upstream: ghcr.io/agam-space/agam-space:0.3.0
-    image: ghcr.1ms.run/agam-space/agam-space:0.3.0
+    # upstream: ghcr.io/agam-space/agam-space:0.4.0
+    image: ghcr.1ms.run/agam-space/agam-space:0.4.0
     environment:
       - DATABASE_HOST=postgres
       - DATABASE_PORT=5432
